@@ -117,4 +117,19 @@ function displayDropdown(event) {
   //       dropdown[i].classList.toggle('hidden');
   //     }
   //   }
+
+  /* Image Slider */
+  /* Links
+  https://www.youtube.com/watch?v=9HcxHDS2w1s
+  https://www.youtube.com/watch?v=pcmCtB9l4aY
+  */
+
+  const slider = document.querySelector('.slider');
+  const rightArrow = document.querySelector('.right-arrow');
+
+  rightArrow.addEventListener('click', moveRight);
+
+  // function moveRight(){
+  //   slider.style.left = -100%;
+  // }
 }
