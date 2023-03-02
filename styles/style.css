@@ -61,7 +61,7 @@
 
 .slider {
   position: relative;
-  display: flex;
+  /* display: flex; */
   /* gap: 2rem; */
   /* overflow: hidden; */
 }
@@ -87,10 +87,20 @@
   inset: 0;
 } */
 
-.slide {
+/* .slide {
   width: 300px;
   margin-left: calc((100% - 300px) / 2);
   margin-right: auto;
+} */
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide > img {
+  display: none;
 }
 
 .slider-picker {

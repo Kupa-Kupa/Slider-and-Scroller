@@ -117,19 +117,70 @@ function displayDropdown(event) {
   //       dropdown[i].classList.toggle('hidden');
   //     }
   //   }
+}
 
-  /* Image Slider */
-  /* Links
+/* Image Slider */
+/* Links
   https://www.youtube.com/watch?v=9HcxHDS2w1s
   https://www.youtube.com/watch?v=pcmCtB9l4aY
   */
 
-  const slider = document.querySelector('.slider');
-  const rightArrow = document.querySelector('.right-arrow');
+let currentImage = 1;
+let intervalTimer = 3000;
+let slideLoop = setInterval(moveRight, intervalTimer);
+showSlide();
 
-  rightArrow.addEventListener('click', moveRight);
+function showSlide() {
+  const img = document.querySelector(`.image-${currentImage}`);
+  img.style.display = 'inline-block';
+}
 
-  // function moveRight(){
-  //   slider.style.left = -100%;
-  // }
+// move slider on right arrow click
+const rightArrow = document.querySelector('.right-arrow');
+rightArrow.addEventListener('click', moveRight);
+
+function moveRight() {
+  // get current image and set display to none
+  const currentImg = document.querySelector(`.image-${currentImage}`);
+  currentImg.style.display = 'none';
+
+  // check if slider is within the number of images or need to loop to start
+  if (currentImage < 5) {
+    currentImage++;
+  } else {
+    currentImage = 1;
+  }
+
+  // get new image and set display to inline-block
+  const newImg = document.querySelector(`.image-${currentImage}`);
+  newImg.style.display = 'inline-block';
+
+  // clear interval and then reset the interval timer
+  clearInterval(slideLoop);
+  slideLoop = setInterval(moveRight, intervalTimer);
+}
+
+// move slider on left arrow click
+const leftArrow = document.querySelector('.left-arrow');
+leftArrow.addEventListener('click', moveLeft);
+
+function moveLeft() {
+  // get current image and set display to none
+  const currentImg = document.querySelector(`.image-${currentImage}`);
+  currentImg.style.display = 'none';
+
+  // check if slider is within the number of images or need to loop to end
+  if (currentImage > 1) {
+    currentImage--;
+  } else {
+    currentImage = 5;
+  }
+
+  // get new image and set display to inline-block
+  const newImg = document.querySelector(`.image-${currentImage}`);
+  newImg.style.display = 'inline-block';
+
+  // clear interval and then reset the interval timer
+  clearInterval(slideLoop);
+  slideLoop = setInterval(moveRight, intervalTimer);
 }
