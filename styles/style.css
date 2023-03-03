@@ -50,7 +50,7 @@
 }
 
 .slider-container {
-  margin-top: 2rem;
+  margin-top: 6rem;
   /* position: relative; */
   width: 100vw;
   /* display: flex;
@@ -125,12 +125,18 @@
 @media only screen and (max-width: 500px) {
   .nav-bar > ul {
     display: none;
+    background-color: lightblue;
   }
 
   .nav-bar > ul.active {
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    position: absolute;
+    z-index: 3;
+    margin: 0;
+    padding: 10px;
   }
 
   .dropdown-items {

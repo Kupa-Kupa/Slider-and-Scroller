@@ -4,7 +4,7 @@ https://www.theodinproject.com/lessons/node-path-javascript-dynamic-user-interfa
 
 [Live View](#) - #
 
-## Learnt About:
+## Learnt About: setInterval and clearInterval
 
 ###
 

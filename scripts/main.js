@@ -5,7 +5,6 @@ https://www.youtube.com/watch?v=flItyHiDm7E
  */
 
 // const dropdowns = document.querySelectorAll('ul ul');
-
 const dropdowns = document.querySelectorAll('.dropdown');
 
 console.log(dropdowns.length);
@@ -126,13 +125,57 @@ function displayDropdown(event) {
   */
 
 let currentImage = 1;
-let intervalTimer = 3000;
+let intervalTimer = 5000;
 let slideLoop = setInterval(moveRight, intervalTimer);
 showSlide();
 
 function showSlide() {
   const img = document.querySelector(`.image-${currentImage}`);
   img.style.display = 'inline-block';
+}
+
+function hideSlide() {
+  const img = document.querySelector(`.image-${currentImage}`);
+  img.style.display = 'none';
+}
+
+// change fill of picker to match current slide
+const sliderPicker = document.querySelector('.slider-picker');
+// console.log(sliderPicker);
+
+function changePickerFill() {
+  for (const child of sliderPicker.children) {
+    child.classList.remove('selected');
+
+    if (parseInt(child.classList[1].split('-')[1]) === currentImage) {
+      child.classList.add('selected');
+    }
+  }
+}
+
+// move to correct slide when picker is clicked
+const picker1 = document.querySelector('.picker-1');
+const picker2 = document.querySelector('.picker-2');
+const picker3 = document.querySelector('.picker-3');
+const picker4 = document.querySelector('.picker-4');
+const picker5 = document.querySelector('.picker-5');
+picker1.addEventListener('click', moveToSlide);
+picker2.addEventListener('click', moveToSlide);
+picker3.addEventListener('click', moveToSlide);
+picker4.addEventListener('click', moveToSlide);
+picker5.addEventListener('click', moveToSlide);
+
+function moveToSlide(event) {
+  hideSlide();
+  let newSlideNumber = event.target.classList[1].split('-')[1];
+  console.log(`selected slide is: ${newSlideNumber}`);
+  currentImage = parseInt(newSlideNumber);
+  showSlide();
+
+  changePickerFill();
+
+  clearInterval(slideLoop);
+  slideLoop = setInterval(moveRight, intervalTimer);
 }
 
 // move slider on right arrow click
@@ -151,9 +194,14 @@ function moveRight() {
     currentImage = 1;
   }
 
+  console.log(`current image is: ${currentImage}`);
+
   // get new image and set display to inline-block
   const newImg = document.querySelector(`.image-${currentImage}`);
   newImg.style.display = 'inline-block';
+
+  // change picker fill colour
+  changePickerFill();
 
   // clear interval and then reset the interval timer
   clearInterval(slideLoop);
@@ -179,6 +227,9 @@ function moveLeft() {
   // get new image and set display to inline-block
   const newImg = document.querySelector(`.image-${currentImage}`);
   newImg.style.display = 'inline-block';
+
+  // change picker fill colour
+  changePickerFill();
 
   // clear interval and then reset the interval timer
   clearInterval(slideLoop);
